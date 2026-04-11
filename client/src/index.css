@@ -444,3 +444,306 @@ img {
   .hero-btns { flex-direction: column; align-items: center; }
   .btn { width: 100%; justify-content: center; }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════════════════════ */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  align-items: center;
+}
+
+/* Avatar */
+.about-avatar-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-avatar {
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-start), var(--accent-end));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 0 60px rgba(255, 85, 0, 0.25);
+}
+
+.about-initials {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -2px;
+}
+
+.about-avatar-ring {
+  position: absolute;
+  width: 270px;
+  height: 270px;
+  border-radius: 50%;
+  border: 2px dashed var(--accent);
+  opacity: 0.3;
+  animation: ringRotate 20s linear infinite;
+}
+@keyframes ringRotate {
+  to { transform: rotate(360deg); }
+}
+
+/* Bio text */
+.about-bio {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+}
+
+/* Badges */
+.about-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.about-badge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 20px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  transition: border-color var(--transition);
+}
+.about-badge:hover { border-color: var(--accent); }
+
+.about-badge-icon {
+  color: var(--accent);
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+  }
+  .about-avatar { width: 180px; height: 180px; }
+  .about-avatar-ring { width: 205px; height: 205px; }
+  .about-initials { font-size: 3.5rem; }
+  .about-badges { align-items: center; }
+  .about-badge { max-width: 360px; }
+  .accent-line { margin-left: auto; margin-right: auto; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SKILLS
+═══════════════════════════════════════════════════════════════ */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.skills-col-label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+/* Single skill row */
+.skill-row {
+  position: relative;
+  cursor: default;
+}
+
+.skill-row-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.skill-name {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.skill-level {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.skill-track {
+  height: 5px;
+  background: var(--border);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.skill-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  border-radius: 99px;
+}
+
+/* Tooltip */
+.skill-tooltip {
+  position: absolute;
+  right: 0;
+  top: -32px;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 4px 10px;
+  font-size: 0.78rem;
+  color: var(--text);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.skill-row:hover .skill-tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 540px) {
+  .skills-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROJECTS
+═══════════════════════════════════════════════════════════════ */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Gradient thumbnail */
+.project-thumb {
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--transition);
+}
+.project-card:hover .project-thumb {
+  transform: scale(1.03);
+}
+
+.project-thumb-num {
+  font-family: var(--font-display);
+  font-size: 5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.15);
+  user-select: none;
+}
+
+/* Body */
+.project-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 12px;
+}
+
+.project-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.project-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* Tech badges */
+.project-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech-badge {
+  padding: 4px 12px;
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+.project-card:hover .tech-badge {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* Links */
+.project-links {
+  display: flex;
+  gap: 16px;
+  padding-top: 4px;
+}
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color var(--transition);
+}
+.project-link:hover { color: var(--text); }
+
+.project-link-accent { color: var(--accent); }
+.project-link-accent:hover { color: var(--accent-end); }
+
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .projects-grid { grid-template-columns: 1fr; }
+}
