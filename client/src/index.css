@@ -58,6 +58,11 @@ body {
   overflow-x: hidden;
 }
 
+/* ─── Scroll offset for fixed navbar ─────────────────────────────────────── */
+section[id] {
+  scroll-margin-top: 80px;
+}
+
 /* ─── Scrollbar ──────────────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: var(--scrollbar-bg); }
@@ -1116,4 +1121,57 @@ img {
 
 @media (max-width: 600px) {
   .footer-inner { justify-content: center; text-align: center; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GLOBAL POLISH
+═══════════════════════════════════════════════════════════════ */
+
+/* Smooth theme transition on every element */
+*, *::before, *::after {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+/* But keep transform/opacity transitions only for animated elements */
+.btn, .card, .project-link, .nav-link, .nav-icon-btn,
+.contact-social-btn, .footer-social-link, .cert-link,
+.about-badge, .skill-row, .tech-badge {
+  transition-property: background-color, border-color, color, box-shadow,
+                        transform, opacity;
+}
+
+/* Prevent transition on page load (applied before JS runs) */
+.no-transition, .no-transition * {
+  transition: none !important;
+}
+
+/* ─── Improved focus ring ───────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ─── Image accessibility ───────────────────────────────────── */
+img[alt=""] { display: none; }
+
+/* ─── Reduced motion ────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration:   0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration:  0.01ms !important;
+  }
+  .dragon-float    { animation: none; }
+  .about-avatar-ring { animation: none; }
+  .typewriter-cursor { animation: none; opacity: 1; }
+  html { scroll-behavior: auto; }
+}
+
+/* ─── Print ─────────────────────────────────────────────────── */
+@media print {
+  .navbar, .hero-scroll-hint, .hero-btns { display: none; }
+  body { background: #fff; color: #000; }
+  section { page-break-inside: avoid; }
 }

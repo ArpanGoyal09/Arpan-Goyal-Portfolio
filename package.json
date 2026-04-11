@@ -1,0 +1,16 @@
+{
+  "name": "arpan-portfolio",
+  "version": "1.0.0",
+  "description": "Personal portfolio of Arpan Goyal — MERN Stack",
+  "private": true,
+  "scripts": {
+    "dev":         "concurrently -n CLIENT,SERVER -c cyan,magenta \"npm run dev --prefix client\" \"npm run dev --prefix server\"",
+    "client":      "npm run dev --prefix client",
+    "server":      "npm run dev --prefix server",
+    "install:all": "npm install --prefix client && npm install --prefix server",
+    "build":       "npm run build --prefix client"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
