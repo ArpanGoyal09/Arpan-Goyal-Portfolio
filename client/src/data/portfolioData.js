@@ -93,16 +93,16 @@ const portfolioData = {
 
   certifications: [
     {
-      title: 'C Programming Course',
-      platform: 'Infosys Springboard',
-      link: '#',
-      year: '2023',
-    },
-    {
       title: 'Programming for Everybody by University of Michigan',
       platform: 'Coursera',
       link: '#',
       year: '2023',
+    },
+    {
+      title: 'Programming in C',
+      platform: 'Infosys Springboard',
+      link: '#',
+      year: '2024',
     },
     {
       title: 'Foundations: Data, Data, Everywhere by Google',
