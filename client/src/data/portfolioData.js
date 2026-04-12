@@ -74,6 +74,13 @@ const portfolioData = {
       description: 'Specializing in full-stack development and machine learning. Actively involved in technical clubs and hackathons.',
     },
     {
+      type: 'work',
+      title: 'Internship - Full Stack Developer',
+      institution: 'Globe Asia Trasport Pvt. Ltd.',
+      period: 'May 2025 – July 2025',
+      description: 'Worked on developing a MERN stack application for centralised management of transportation logistics, improving efficiency by 30%.',
+    },
+    {
       type: 'education',
       title: 'Senior Secondary (XII)',
       institution: 'Neerja Modi School, Jaipur',

@@ -2,7 +2,7 @@
 
 A full-stack personal portfolio website built with the **MERN Stack** (MongoDB, Express.js, React.js, Node.js).
 
-**Live Demo:** `https://ag-portfolio-alpha.vercel.app/`
+**Live Demo:** `https://arpan-goyal-portfolio.vercel.app/`
 
 ---
 
