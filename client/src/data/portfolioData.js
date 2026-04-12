@@ -10,7 +10,7 @@ const portfolioData = {
   subtitle: 'Building digital experiences with the MERN Stack',
   email: 'goyalarpan8444@gmail.com',
   github: 'https://github.com/ArpanGoyal09',
-  linkedin: 'https://linkedin.com/in/arpan-goyal',
+  linkedin: 'https://www.linkedin.com/in/arpan-goyal-394960352/',
   location: 'Jaipur, Rajasthan',
   university: 'J.K. Lakshmipat University',
   degree: 'B.Tech Computer Science & Engineering',
