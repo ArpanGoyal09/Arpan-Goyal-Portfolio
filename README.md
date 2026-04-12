@@ -2,7 +2,7 @@
 
 A full-stack personal portfolio website built with the **MERN Stack** (MongoDB, Express.js, React.js, Node.js).
 
-**Live Demo:** `[Add your deployed URL here]`
+**Live Demo:** `https://ag-portfolio-alpha.vercel.app/`
 
 ---
 
@@ -36,21 +36,21 @@ A full-stack personal portfolio website built with the **MERN Stack** (MongoDB, 
 
 ```
 Portfolio/
-├── client/               # React frontend (Vite)
+├── client/               
 │   ├── public/
 │   ├── src/
-│   │   ├── components/   # Navbar, Hero, About, Skills, Projects, Timeline, Certifications, Contact, Footer
-│   │   ├── context/      # ThemeContext (dark/light)
-│   │   ├── data/         # portfolioData.js — all personal content in one file
-│   │   ├── hooks/        # useScrollReveal.js
-│   │   └── utils/        # api.js (axios instance)
+│   │   ├── components/   
+│   │   ├── context/      
+│   │   ├── data/         
+│   │   ├── hooks/        
+│   │   └── utils/        
 │   └── .env.example
-└── server/               # Express backend
-    ├── config/           # MongoDB connection
-    ├── models/           # Contact schema (Mongoose)
-    ├── routes/           # /api/contact, /api/download
-    ├── middleware/        # Input validation (express-validator)
-    ├── uploads/          # Resume files (gitignored)
+└── server/               
+    ├── config/           
+    ├── models/           
+    ├── routes/           
+    ├── middleware/       
+    ├── uploads/          
     └── .env.example
 ```
 
@@ -65,8 +65,8 @@ Portfolio/
 ### 1. Clone
 
 ```bash
-git clone https://github.com/ArpanGoyal09/arpan-portfolio.git
-cd arpan-portfolio
+git clone https://github.com/ArpanGoyal09/Arpan-Goyal-Portfolio.git
+cd portfolio
 ```
 
 ### 2. Backend
@@ -150,4 +150,4 @@ After deploying:
 **Arpan Goyal**
 - GitHub: [@ArpanGoyal09](https://github.com/ArpanGoyal09)
 - Email: goyalarpan8444@gmail.com
-- J.K. Lakshmipat University · B.Tech CSE · 2024–2028
+- J.K. Lakshmipat University · B.Tech CSE · 2023–2027

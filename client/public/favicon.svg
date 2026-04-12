@@ -1,19 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
-  <text
-    x="32"
-    y="42"
-    text-anchor="middle"
-    font-family="system-ui, sans-serif"
-    font-weight="700"
-    font-size="26"
-    fill="url(#fg)"
-    letter-spacing="-1"
-  >AG</text>
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="fg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%"   stop-color="#ff4d00"/>
-      <stop offset="100%" stop-color="#ff6b2b"/>
+    <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ff5500"/>
+      <stop offset="100%" stop-color="#cc2200"/>
     </linearGradient>
+    <filter id="ey">
+      <feGaussianBlur stdDeviation="1.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
+  <rect width="100" height="100" rx="16" fill="#0a0a0a"/>
+  <path d="M 14,60 C 12,46 15,30 28,20 C 40,11 58,10 70,18 C 80,25 86,38 82,52 C 78,64 66,72 52,74 C 38,75 18,72 14,60 Z" fill="url(#dg)"/>
+  <path d="M 74,38 C 82,34 90,36 93,44 C 95,50 91,56 84,56 C 80,50 76,44 74,40 Z" fill="#ff4d00"/>
+  <path d="M 18,58 C 22,70 36,76 52,76 C 66,76 78,68 82,58 C 74,64 62,66 50,66 C 38,66 24,64 18,58 Z" fill="#992200"/>
+  <polygon points="42,66 38,75 46,66" fill="#ffe8cc" opacity="0.92"/>
+  <polygon points="52,67 49,76 57,67" fill="#ffe8cc" opacity="0.92"/>
+  <polygon points="62,65 59,73 67,65" fill="#ffe8cc" opacity="0.85"/>
+  <ellipse cx="50" cy="38" rx="10" ry="11" fill="#ffee00" filter="url(#ey)"/>
+  <ellipse cx="51" cy="39" rx="5" ry="6" fill="#ff8800"/>
+  <ellipse cx="50" cy="38" rx="2.2" ry="3" fill="#1a0500"/>
+  <circle cx="48" cy="36" r="1.8" fill="white" opacity="0.85"/>
+  <polygon points="28,24 22,4 38,22" fill="#cc2400"/>
+  <polygon points="42,18 38,0 50,16" fill="#aa2000"/>
+  <polygon points="22,36 16,24 26,34" fill="#cc2400" opacity="0.75"/>
+  <ellipse cx="88" cy="47" rx="2.2" ry="1.6" fill="#771800" opacity="0.9"/>
+  <line x1="88" y1="44" x2="98" y2="36" stroke="#ff8844" stroke-width="1.4" opacity="0.7"/>
+  <line x1="88" y1="48" x2="98" y2="54" stroke="#ff8844" stroke-width="1.4" opacity="0.6"/>
 </svg>

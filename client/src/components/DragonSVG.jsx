@@ -1,159 +1,153 @@
+const BODY = 'M 625,52 C 900,52 1100,160 1100,316 C 1100,472 900,578 600,578 C 300,578 100,472 100,316 C 100,160 300,52 572,52';
+
 const DragonSVG = () => (
   <svg
-    viewBox="0 0 480 500"
+    id="hero-dragon-svg"
+    viewBox="0 0 1200 640"
     xmlns="http://www.w3.org/2000/svg"
-    aria-label="Dragon illustration"
-    role="img"
-    style={{ width: '100%', height: '100%' }}
+    preserveAspectRatio="xMidYMid meet"
+    style={{ width: '100%', height: '100%', overflow: 'visible' }}
+    aria-hidden="true"
   >
     <defs>
-      <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#ff4d00" />
-        <stop offset="100%" stopColor="#ff6b2b" />
-      </linearGradient>
-      <linearGradient id="g2" x1="100%" y1="0%" x2="0%" y2="100%">
-        <stop offset="0%" stopColor="#cc3a00" />
-        <stop offset="100%" stopColor="#992800" />
-      </linearGradient>
-      <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
-        <stop offset="0%" stopColor="#ff6b2b" stopOpacity="0.7" />
-        <stop offset="100%" stopColor="#ff4d00" stopOpacity="0.3" />
-      </linearGradient>
-      <linearGradient id="fire" x1="0%" y1="0%" x2="100%" y2="0%">
-        <stop offset="0%" stopColor="#ffdd00" />
-        <stop offset="55%" stopColor="#ff6600" />
-        <stop offset="100%" stopColor="#ff4d00" stopOpacity="0" />
-      </linearGradient>
-      <filter id="glow">
-        <feGaussianBlur stdDeviation="4" result="blur" />
-        <feMerge>
-          <feMergeNode in="blur" />
-          <feMergeNode in="SourceGraphic" />
-        </feMerge>
+      <filter id="dg-glow" x="-30%" y="-30%" width="160%" height="160%">
+        <feGaussianBlur stdDeviation="7" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
       </filter>
+      <filter id="dg-eye-glow" x="-60%" y="-60%" width="220%" height="220%">
+        <feGaussianBlur stdDeviation="4" result="b"/>
+        <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+      <linearGradient id="dg-fire" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%"   stopColor="#ffee00"/>
+        <stop offset="55%"  stopColor="#ff8800"/>
+        <stop offset="100%" stopColor="#ff4400" stopOpacity="0"/>
+      </linearGradient>
     </defs>
 
-    {/* ── LEFT WING (large, dominant) ─────────────────────────── */}
-    <polygon
-      points="20,380 10,180 55,70 140,20 215,90 230,200 210,260 190,300"
-      fill="url(#g2)"
-    />
-    <polygon
-      points="10,180 55,70 140,20 215,90 190,160"
-      fill="url(#g1)"
-      opacity="0.85"
-    />
-    {/* Low-poly membrane triangles */}
-    <polygon points="10,180 55,70 80,140"  fill="#ff4d00" opacity="0.45" />
-    <polygon points="55,70 140,20 100,70"  fill="#cc3a00" opacity="0.55" />
-    <polygon points="140,20 215,90 175,65" fill="#ff5500" opacity="0.38" />
-    <polygon points="10,180 80,140 190,160 230,200 180,220" fill="#aa3300" opacity="0.38" />
-    <polygon points="20,380 60,300 190,300 210,260 180,220 10,180" fill="#882200" opacity="0.45" />
-    {/* Wing edge highlight */}
-    <polyline
-      points="140,20 215,90 230,200 210,260"
-      fill="none" stroke="#ff6b2b" strokeWidth="1.5" opacity="0.5"
-    />
+    {/* ambient ring glow */}
+    <ellipse cx="600" cy="316" rx="490" ry="260"
+      fill="none" stroke="rgba(255,85,0,0.055)" strokeWidth="90"/>
 
-    {/* ── RIGHT WING (smaller, angled back) ───────────────────── */}
-    <polygon
-      points="240,175 270,50 340,30 370,100 335,170 295,195"
-      fill="url(#g2)" opacity="0.8"
-    />
-    <polygon points="270,50 340,30 300,60"  fill="#ff5500" opacity="0.48" />
-    <polygon points="270,50 370,100 315,95" fill="url(#g1)" opacity="0.48" />
-    <polygon points="340,30 370,100 355,55" fill="#cc3a00" opacity="0.42" />
-    <polyline
-      points="340,30 370,100 335,170"
-      fill="none" stroke="#ff6b2b" strokeWidth="1" opacity="0.4"
-    />
+    {/* body — three layers driven by strokeDashoffset in Hero.jsx */}
+    <path id="dg-body-shadow"    d={BODY} fill="none" stroke="#7a1200" strokeWidth="68" strokeLinecap="round" strokeLinejoin="round"/>
+    <path id="dg-body-main"      d={BODY} fill="none" stroke="#ff4400" strokeWidth="50" strokeLinecap="round" strokeLinejoin="round"/>
+    <path id="dg-body-highlight" d={BODY} fill="none" stroke="#ff7744" strokeWidth="22" strokeLinecap="round" strokeLinejoin="round" opacity="0.5"/>
 
-    {/* ── BODY ────────────────────────────────────────────────── */}
-    <polygon
-      points="200,220 248,205 298,235 315,305 285,350 235,360 198,330 188,275"
-      fill="url(#g1)"
-    />
-    {/* Belly highlight */}
-    <polygon
-      points="215,245 252,230 282,265 275,318 242,338 210,308"
-      fill="#ff6b2b" opacity="0.32"
-    />
-    {/* Shadow depth */}
-    <polygon
-      points="285,350 315,305 300,355 270,365"
-      fill="#cc3a00" opacity="0.55"
-    />
+    {/* dorsal spines — revealed mid-draw */}
+    <g id="dg-spines" opacity="0">
+      <polygon points="748,28 737,36 759,36"       fill="#ff2800" opacity="0.88"/>
+      <polygon points="866,36 855,44 877,44"       fill="#ff2800" opacity="0.88"/>
+      <polygon points="980,84 968,96 992,96"       fill="#ff2800" opacity="0.84"/>
+      <polygon points="1116,178 1140,190 1116,202" fill="#ff2800" opacity="0.84"/>
+      <polygon points="1126,296 1150,308 1126,320" fill="#ff2800" opacity="0.82"/>
+      <polygon points="1110,418 1134,428 1110,438" fill="#ff2800" opacity="0.80"/>
+      <polygon points="974,596 963,620 985,620"    fill="#ff2800" opacity="0.80"/>
+      <polygon points="790,600 779,624 801,624"    fill="#ff2800" opacity="0.80"/>
+      <polygon points="598,604 587,628 609,628"    fill="#ff2800" opacity="0.78"/>
+      <polygon points="405,600 394,624 416,624"    fill="#ff2800" opacity="0.78"/>
+      <polygon points="220,592 209,616 231,616"    fill="#ff2800" opacity="0.78"/>
+      <polygon points="74,418 50,428 74,438"       fill="#ff2800" opacity="0.80"/>
+      <polygon points="58,296 34,308 58,320"       fill="#ff2800" opacity="0.82"/>
+      <polygon points="72,178 48,190 72,202"       fill="#ff2800" opacity="0.84"/>
+      <polygon points="214,82 202,94 226,94"       fill="#ff2800" opacity="0.84"/>
+      <polygon points="328,38 316,46 340,46"       fill="#ff2800" opacity="0.86"/>
+      <polygon points="450,26 438,34 462,34"       fill="#ff2800" opacity="0.88"/>
+    </g>
 
-    {/* ── NECK ────────────────────────────────────────────────── */}
-    <polygon
-      points="248,205 272,192 302,205 298,235 252,245"
-      fill="url(#g2)"
-    />
+    {/* scale arc marks */}
+    <g stroke="#ff8855" strokeWidth="1.4" fill="none" opacity="0.3">
+      <path d="M 692,34 C 698,22 716,22 722,34"/>
+      <path d="M 808,42 C 814,30 832,30 838,42"/>
+      <path d="M 928,72 C 934,60 952,60 958,72"/>
+      <path d="M 1048,142 C 1060,132 1076,132 1088,142"/>
+      <path d="M 1106,252 C 1120,244 1136,244 1150,252"/>
+      <path d="M 1104,386 C 1118,394 1134,394 1148,386"/>
+      <path d="M 1042,504 C 1050,516 1066,516 1074,504"/>
+      <path d="M 905,562 C 913,574 929,574 937,562"/>
+      <path d="M 738,580 C 746,592 762,592 770,580"/>
+      <path d="M 593,582 C 601,594 617,594 625,582"/>
+      <path d="M 446,580 C 454,592 470,592 478,580"/>
+      <path d="M 285,558 C 293,570 309,570 317,558"/>
+      <path d="M 148,496 C 156,508 172,508 180,496"/>
+      <path d="M 86,380 C 72,388 58,388 44,380"/>
+      <path d="M 88,244 C 74,236 60,236 46,244"/>
+      <path d="M 154,122 C 142,112 128,112 116,122"/>
+      <path d="M 294,52 C 288,40 272,40 266,52"/>
+      <path d="M 432,32 C 426,20 410,20 404,32"/>
+      <path d="M 526,24 C 520,12 504,12 498,24"/>
+    </g>
 
-    {/* ── HEAD ────────────────────────────────────────────────── */}
-    <polygon
-      points="275,160 305,142 348,148 372,174 362,210 330,220 297,207 274,188"
-      fill="url(#g1)"
-    />
-    {/* Lower jaw */}
-    <polygon
-      points="312,192 348,188 368,198 362,212 330,220 308,208"
-      fill="url(#g2)"
-    />
-    {/* Snout / muzzle */}
-    <polygon
-      points="348,148 390,138 400,160 378,172 350,168"
-      fill="url(#g1)"
-    />
-    {/* Eye */}
-    <polygon points="308,166 318,158 327,166 320,175 310,172" fill="#ffdd00" filter="url(#glow)" />
-    <polygon points="313,167 318,162 323,167 319,172" fill="#ff8800" opacity="0.6" />
-    {/* Horns */}
-    <polygon points="285,154 278,118 295,150" fill="#cc3a00" />
-    <polygon points="302,148 296,112 312,145" fill="#aa2e00" />
-    {/* Head crest */}
-    <polygon points="275,160 282,145 295,158" fill="#cc3a00" opacity="0.55" />
+    {/* tail — curls upward from body start at (625,52) */}
+    <g id="dg-tail">
+      <path
+        d="M 625,52 C 645,44 660,32 666,20 C 671,10 666,3 659,2 C 652,1 645,7 643,16 C 641,23 642,32 636,40"
+        fill="none" stroke="#cc2600" strokeWidth="16" strokeLinecap="round"/>
+      <path
+        d="M 666,20 C 672,10 669,2 661,1"
+        fill="none" stroke="#aa2000" strokeWidth="10" strokeLinecap="round"/>
+      <ellipse cx="659" cy="3" rx="6" ry="5" fill="#ff4400" filter="url(#dg-glow)" opacity="0.9"/>
+    </g>
 
-    {/* ── FIRE BREATH ─────────────────────────────────────────── */}
-    <polygon
-      points="397,152 442,130 456,150 470,137 462,160 474,150 460,172 440,163 415,159 398,163"
-      fill="url(#fire)"
-      filter="url(#glow)"
-    />
-    <polygon points="398,156 420,148 426,159 409,164" fill="#ffdd00" opacity="0.88" />
-    <polygon points="414,151 436,141 441,153 421,159" fill="#ffaa00" opacity="0.7" />
+    {/* head — revealed last, faces RIGHT toward tail gap */}
+    <g id="dg-head" opacity="0">
+      <ellipse cx="604" cy="52" rx="80" ry="40" fill="rgba(255,85,0,0.14)" filter="url(#dg-glow)"/>
 
-    {/* ── TAIL ────────────────────────────────────────────────── */}
-    <polygon
-      points="198,330 182,378 152,415 112,448 90,438 118,410 145,376 170,340"
-      fill="url(#g2)"
-    />
-    <polygon
-      points="170,340 145,376 118,410 90,438 82,450 72,465 88,468 105,452 128,422 158,390 180,355 195,338"
-      fill="url(#g1)" opacity="0.55"
-    />
-    {/* Tail tip */}
-    <polygon points="72,465 82,450 92,468 80,475" fill="#ff4d00" opacity="0.8" />
-    {/* Dorsal spikes on tail */}
-    <polygon points="152,415 162,395 168,415 158,420" fill="#cc3a00" opacity="0.68" />
-    <polygon points="182,378 190,360 196,378 186,384" fill="#cc3a00" opacity="0.68" />
+      {/* upper jaw */}
+      <path
+        d="M 552,53 C 556,42 566,32 584,26 C 602,20 624,22 638,32 C 648,40 651,52 644,60 C 634,52 616,48 596,47 C 578,47 562,50 556,56 Z"
+        fill="#ff4400"/>
+      <path
+        d="M 552,53 C 556,42 566,32 584,26 C 602,20 624,22 638,32 C 648,40 651,52 644,60"
+        fill="none" stroke="#ff7744" strokeWidth="1.8" opacity="0.55"/>
 
-    {/* ── FRONT LEG ───────────────────────────────────────────── */}
-    <polygon points="258,335 268,385 253,400 243,382 248,342" fill="url(#g2)" />
-    <polygon points="253,398 258,415 248,415 243,398" fill="#992800" />
-    <polygon points="244,395 249,411 239,410 235,395" fill="#992800" />
-    <polygon points="262,397 267,414 257,413 254,397" fill="#992800" />
+      {/* lower jaw */}
+      <path
+        d="M 552,56 C 556,68 566,77 584,81 C 600,85 620,82 632,73 C 640,67 641,59 635,57 C 624,65 606,68 588,67 C 570,66 558,62 552,58 Z"
+        fill="#bb2200"/>
 
-    {/* ── BACK LEG ────────────────────────────────────────────── */}
-    <polygon points="210,345 220,392 205,406 192,390 198,350" fill="url(#g2)" />
-    <polygon points="205,404 210,420 200,419 195,404" fill="#992800" />
-    <polygon points="196,401 200,418 190,416 187,401" fill="#992800" />
-    <polygon points="214,403 218,420 208,419 205,403" fill="#992800" />
+      {/* upper teeth */}
+      <polygon points="578,48 573,38 582,48" fill="#ffedcc" opacity="0.92"/>
+      <polygon points="596,46 592,36 601,46" fill="#ffedcc" opacity="0.90"/>
+      <polygon points="614,46 611,37 620,47" fill="#ffedcc" opacity="0.86"/>
+      <polygon points="630,50 628,41 637,51" fill="#ffedcc" opacity="0.80"/>
 
-    {/* ── DORSAL SPINES ───────────────────────────────────────── */}
-    <polygon points="220,220 226,202 232,218" fill="#cc3a00" opacity="0.8" />
-    <polygon points="238,210 245,192 252,209" fill="#cc3a00" opacity="0.8" />
-    <polygon points="258,206 265,188 272,205" fill="#cc3a00" opacity="0.8" />
+      {/* lower teeth */}
+      <polygon points="578,67 573,77 582,67" fill="#eeddbb" opacity="0.82"/>
+      <polygon points="596,67 592,77 601,67" fill="#eeddbb" opacity="0.80"/>
+      <polygon points="614,66 611,75 619,66" fill="#eeddbb" opacity="0.75"/>
+
+      {/* eye */}
+      <ellipse cx="576" cy="40" rx="11" ry="12" fill="#ffee44" filter="url(#dg-eye-glow)"/>
+      <ellipse cx="577" cy="41" rx="5.5" ry="6.5" fill="#ff8800"/>
+      <ellipse cx="576" cy="40" rx="2.5" ry="3"   fill="#110400"/>
+      <circle  cx="574" cy="38" r="2.2"            fill="white" opacity="0.88"/>
+
+      {/* horns */}
+      <polygon points="558,48 549,18 565,46" fill="#cc2400"/>
+      <polygon points="570,44 564,12 578,42" fill="#aa2000"/>
+      <polygon points="556,50 550,32 560,48" fill="#882000" opacity="0.65"/>
+
+      {/* crest spines */}
+      <polygon points="568,38 563,24 572,37" fill="#cc2600" opacity="0.72"/>
+      <polygon points="582,32 579,18 587,31" fill="#cc2600" opacity="0.62"/>
+      <polygon points="598,27 596,14 604,26" fill="#cc2600" opacity="0.55"/>
+
+      {/* whiskers */}
+      <path d="M 640,44 C 652,38 664,34 672,30 C 678,27 679,22 674,20"
+        fill="none" stroke="#ff9955" strokeWidth="2.2" strokeLinecap="round" opacity="0.68"/>
+      <path d="M 638,54 C 650,55 661,52 668,57 C 673,62 670,67 663,66"
+        fill="none" stroke="#ff9955" strokeWidth="1.8" strokeLinecap="round" opacity="0.58"/>
+      <path d="M 640,40 C 653,32 666,24 672,18 C 676,13 672,9 666,11"
+        fill="none" stroke="#ff9955" strokeWidth="1.5" strokeLinecap="round" opacity="0.48"/>
+
+      {/* nostril */}
+      <ellipse cx="641" cy="40" rx="3.2" ry="2.2" fill="#771800" opacity="0.85"/>
+
+      {/* fire breath */}
+      <path d="M 646,48 C 662,40 680,36 696,40 C 685,44 668,46 666,54 C 678,46 694,44 706,50 C 695,56 680,58 678,64"
+        fill="none" stroke="url(#dg-fire)" strokeWidth="6" strokeLinecap="round" opacity="0.5"/>
+    </g>
   </svg>
 );
 
