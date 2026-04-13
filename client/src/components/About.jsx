@@ -1,4 +1,5 @@
-import { FiMapPin, FiBook, FiUser } from 'react-icons/fi';
+import { useState, useRef } from 'react';
+import { FiMapPin, FiBook, FiUser, FiCamera, FiMusic, FiPlay, FiPause, FiExternalLink, FiImage } from 'react-icons/fi';
 import useScrollReveal from '../hooks/useScrollReveal';
 import portfolioData from '../data/portfolioData';
 
@@ -9,9 +10,47 @@ const badges = [
 ];
 
 export default function About() {
-  const imgRef     = useScrollReveal('left',  0,    0.7);
-  const textRef    = useScrollReveal('right', 0.1,  0.7);
-  const badgesRef  = useScrollReveal('up',    0.25, 0.6);
+  const [activeHobby, setActiveHobby] = useState('photography');
+  const [lightbox, setLightbox]       = useState(null);
+  const [playingId, setPlayingId]     = useState(null);
+  const [progress, setProgress]       = useState(0);
+
+  const audioRef    = useRef(null);
+  const imgRef      = useScrollReveal('left',  0,    0.7);
+  const textRef     = useScrollReveal('right', 0.1,  0.7);
+  const badgesRef   = useScrollReveal('up',    0.25, 0.6);
+  const hobbiesRef  = useScrollReveal('up',    0.1,  0.5);
+
+  const photos = portfolioData.hobbies.photography;
+  const tracks = portfolioData.hobbies.music;
+
+  // ── Audio controls ──────────────────────────────────────────────
+  const togglePlay = (track) => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    if (playingId === track.id) {
+      audio.pause();
+      setPlayingId(null);
+    } else {
+      audio.src = track.audioSrc;
+      audio.currentTime = 0;
+      audio.play();
+      setPlayingId(track.id);
+      setProgress(0);
+    }
+  };
+
+  const handleTimeUpdate = () => {
+    const audio = audioRef.current;
+    if (!audio || !audio.duration) return;
+    setProgress((audio.currentTime / audio.duration) * 100);
+  };
+
+  const handleEnded = () => {
+    setPlayingId(null);
+    setProgress(0);
+  };
 
   return (
     <section id="about" className="section">
@@ -23,7 +62,6 @@ export default function About() {
             <div className="about-avatar">
               <span className="about-initials">AG</span>
             </div>
-            {/* Decorative accent ring */}
             <div className="about-avatar-ring" aria-hidden="true" />
           </div>
 
@@ -38,7 +76,6 @@ export default function About() {
               <p className="about-bio">{portfolioData.bio}</p>
             </div>
 
-            {/* Badges */}
             <div ref={badgesRef} className="about-badges">
               {badges.map(({ icon, label }) => (
                 <div key={label} className="about-badge">
@@ -50,7 +87,164 @@ export default function About() {
           </div>
 
         </div>
+
+        {/* ── Hobbies ──────────────────────────────────────────── */}
+        <div ref={hobbiesRef} className="hobbies-section">
+          <h3 className="hobbies-title">Beyond the Code</h3>
+          <div className="accent-line" />
+
+          <div className="hobby-tabs" role="tablist">
+            <button
+              role="tab"
+              aria-selected={activeHobby === 'photography'}
+              className={`hobby-tab${activeHobby === 'photography' ? ' active' : ''}`}
+              onClick={() => setActiveHobby('photography')}
+            >
+              <FiCamera /> Photography
+            </button>
+            <button
+              role="tab"
+              aria-selected={activeHobby === 'music'}
+              className={`hobby-tab${activeHobby === 'music' ? ' active' : ''}`}
+              onClick={() => setActiveHobby('music')}
+            >
+              <FiMusic /> Music Production
+            </button>
+          </div>
+
+          {/* ── Photography tab ──────────────────────────────── */}
+          {activeHobby === 'photography' && (
+            <div className="hobby-panel" role="tabpanel">
+              {photos.length === 0 ? (
+                <div className="hobby-empty">
+                  <FiImage className="hobby-empty-icon" />
+                  <p>Photos coming soon — check back later.</p>
+                </div>
+              ) : (
+                <div className="photo-gallery">
+                  {photos.map(photo => (
+                    <button
+                      key={photo.id}
+                      className="photo-card"
+                      onClick={() => setLightbox(photo)}
+                      aria-label={`View photo: ${photo.caption}`}
+                    >
+                      <img src={photo.src} alt={photo.alt} loading="lazy" />
+                      <div className="photo-overlay">
+                        <FiCamera className="photo-overlay-icon" />
+                        <span>{photo.caption}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* ── Music tab ────────────────────────────────────── */}
+          {activeHobby === 'music' && (
+            <div className="hobby-panel" role="tabpanel">
+              {tracks.length === 0 ? (
+                <div className="hobby-empty">
+                  <FiMusic className="hobby-empty-icon" />
+                  <p>Tracks coming soon — stay tuned.</p>
+                </div>
+              ) : (
+                <div className="music-grid">
+                  {tracks.map(track => {
+                    const isPlaying = playingId === track.id;
+                    return (
+                      <div key={track.id} className={`track-card${isPlaying ? ' playing' : ''}`}>
+                        <div className="track-art" aria-hidden="true">
+                          <FiMusic />
+                        </div>
+
+                        <div className="track-info">
+                          <h4 className="track-title">{track.title}</h4>
+                          {track.description && (
+                            <p className="track-desc">{track.description}</p>
+                          )}
+                          {track.tags && track.tags.length > 0 && (
+                            <div className="track-tags">
+                              {track.tags.map(tag => (
+                                <span key={tag} className="track-tag">{tag}</span>
+                              ))}
+                            </div>
+                          )}
+                          {/* Progress bar — only shown while playing */}
+                          {isPlaying && (
+                            <div className="track-progress-wrap">
+                              <div
+                                className="track-progress-bar"
+                                style={{ width: `${progress}%` }}
+                              />
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="track-controls">
+                          {/* Play / Pause — only if audioSrc is provided */}
+                          {track.audioSrc && (
+                            <button
+                              className={`track-play-btn${isPlaying ? ' playing' : ''}`}
+                              onClick={() => togglePlay(track)}
+                              aria-label={isPlaying ? `Pause ${track.title}` : `Play ${track.title}`}
+                            >
+                              {isPlaying ? <FiPause /> : <FiPlay />}
+                            </button>
+                          )}
+                          {/* External link */}
+                          {track.link && track.link !== '#' && (
+                            <a
+                              href={track.link}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="track-ext-link"
+                              aria-label={`Open ${track.title} on ${track.platform}`}
+                            >
+                              <FiExternalLink />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
       </div>
+
+      {/* Hidden audio element */}
+      <audio
+        ref={audioRef}
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleEnded}
+      />
+
+      {/* ── Lightbox ─────────────────────────────────────────── */}
+      {lightbox && (
+        <div
+          className="lightbox-overlay"
+          onClick={() => setLightbox(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={lightbox.caption}
+        >
+          <div className="lightbox-content" onClick={e => e.stopPropagation()}>
+            <img src={lightbox.src} alt={lightbox.alt} />
+            {lightbox.caption && (
+              <p className="lightbox-caption">{lightbox.caption}</p>
+            )}
+            <button
+              className="lightbox-close"
+              onClick={() => setLightbox(null)}
+              aria-label="Close"
+            >✕</button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

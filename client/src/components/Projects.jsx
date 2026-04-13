@@ -12,15 +12,25 @@ function ProjectCard({ project, index }) {
   const cardRef = useScrollReveal('up', index * 0.12, 0.65);
   const [c1, c2] = GRAD_PALETTES[index % GRAD_PALETTES.length];
 
+  const hasImage = !!project.image;
+
   return (
     <article ref={cardRef} className="project-card card">
       {/* Thumbnail */}
       <div
         className="project-thumb"
-        style={{ background: `linear-gradient(135deg, ${c1}, ${c2})` }}
+        style={hasImage ? {} : { background: `linear-gradient(135deg, ${c1}, ${c2})` }}
         aria-hidden="true"
       >
-        <span className="project-thumb-num">0{index + 1}</span>
+        {hasImage ? (
+          <img
+            src={project.image}
+            alt={project.title}
+            className="project-thumb-img"
+          />
+        ) : (
+          <span className="project-thumb-num">0{index + 1}</span>
+        )}
       </div>
 
       <div className="project-body">
