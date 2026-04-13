@@ -1,29 +1,95 @@
 <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#ff5500"/>
-      <stop offset="100%" stop-color="#cc2200"/>
+    <linearGradient id="hg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#cc2200"/>
+      <stop offset="100%" stop-color="#7a1200"/>
     </linearGradient>
-    <filter id="ey">
-      <feGaussianBlur stdDeviation="1.5" result="b"/>
+    <radialGradient id="eg" cx="38%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#ffcc00"/>
+      <stop offset="100%" stop-color="#ff5500"/>
+    </radialGradient>
+    <filter id="gl">
+      <feGaussianBlur stdDeviation="2.5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="eg-glow">
+      <feGaussianBlur stdDeviation="3" result="b"/>
       <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
-  <rect width="100" height="100" rx="16" fill="#0a0a0a"/>
-  <path d="M 14,60 C 12,46 15,30 28,20 C 40,11 58,10 70,18 C 80,25 86,38 82,52 C 78,64 66,72 52,74 C 38,75 18,72 14,60 Z" fill="url(#dg)"/>
-  <path d="M 74,38 C 82,34 90,36 93,44 C 95,50 91,56 84,56 C 80,50 76,44 74,40 Z" fill="#ff4d00"/>
-  <path d="M 18,58 C 22,70 36,76 52,76 C 66,76 78,68 82,58 C 74,64 62,66 50,66 C 38,66 24,64 18,58 Z" fill="#992200"/>
-  <polygon points="42,66 38,75 46,66" fill="#ffe8cc" opacity="0.92"/>
-  <polygon points="52,67 49,76 57,67" fill="#ffe8cc" opacity="0.92"/>
-  <polygon points="62,65 59,73 67,65" fill="#ffe8cc" opacity="0.85"/>
-  <ellipse cx="50" cy="38" rx="10" ry="11" fill="#ffee00" filter="url(#ey)"/>
-  <ellipse cx="51" cy="39" rx="5" ry="6" fill="#ff8800"/>
-  <ellipse cx="50" cy="38" rx="2.2" ry="3" fill="#1a0500"/>
-  <circle cx="48" cy="36" r="1.8" fill="white" opacity="0.85"/>
-  <polygon points="28,24 22,4 38,22" fill="#cc2400"/>
-  <polygon points="42,18 38,0 50,16" fill="#aa2000"/>
-  <polygon points="22,36 16,24 26,34" fill="#cc2400" opacity="0.75"/>
-  <ellipse cx="88" cy="47" rx="2.2" ry="1.6" fill="#771800" opacity="0.9"/>
-  <line x1="88" y1="44" x2="98" y2="36" stroke="#ff8844" stroke-width="1.4" opacity="0.7"/>
-  <line x1="88" y1="48" x2="98" y2="54" stroke="#ff8844" stroke-width="1.4" opacity="0.6"/>
+
+  <!-- Background -->
+  <rect width="100" height="100" rx="18" fill="#0d0d0d"/>
+
+  <!-- Ambient glow -->
+  <ellipse cx="50" cy="58" rx="40" ry="34" fill="#cc220018" filter="url(#gl)"/>
+
+  <!-- Depth shadow -->
+  <path d="M 18,56 C 17,42 22,28 36,20 C 50,12 68,10 80,20 C 88,28 92,40 90,52 C 90,62 86,72 76,80 C 64,88 48,90 34,86 C 22,82 16,72 16,62 C 16,60 17,58 18,56 Z"
+    fill="#2a0404" opacity="0.6"/>
+
+  <!-- Main skull (facing right) -->
+  <path d="M 18,56 C 17,42 23,28 37,20 C 51,12 68,12 80,22 C 88,30 92,42 90,54 C 90,62 86,72 76,80 C 64,88 48,88 35,82 C 22,76 17,66 18,56 Z"
+    fill="url(#hg)"/>
+
+  <!-- Skull sheen -->
+  <path d="M 37,20 C 51,12 68,12 80,22 C 88,30 92,42 90,54 C 86,42 78,30 66,22 C 54,14 40,14 30,22 Z"
+    fill="#dc2626" opacity="0.38"/>
+
+  <!-- Snout extension (pointing right) -->
+  <path d="M 90,52 C 93,44 97,44 98,50 C 99,56 96,63 91,64 C 89,64 88,62 88,58"
+    fill="#cc2200"/>
+
+  <!-- Brow ridge -->
+  <path d="M 36,30 C 42,22 52,20 62,24"
+    fill="none" stroke="#f87171" stroke-width="2.8" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Upper jaw definition -->
+  <path d="M 88,50 C 80,36 66,28 50,24 C 60,24 74,30 84,42 Z"
+    fill="#cc2626" opacity="0.55"/>
+
+  <!-- Lower jaw -->
+  <path d="M 90,58 C 84,72 70,82 54,86"
+    fill="none" stroke="#7f1d1d" stroke-width="5.5" stroke-linecap="round"/>
+
+  <!-- Upper teeth (pointing down from upper jaw) -->
+  <polygon points="72,44 68,32 76,44"  fill="#ffedd8" opacity="0.90"/>
+  <polygon points="82,52 78,40 86,52"  fill="#ffedd8" opacity="0.86"/>
+  <polygon points="60,38 56,26 64,38"  fill="#ffedd8" opacity="0.80"/>
+
+  <!-- Lower teeth (pointing up from lower jaw) -->
+  <polygon points="72,76 68,88 76,76"  fill="#eeddc8" opacity="0.78"/>
+  <polygon points="58,82 54,94 62,82"  fill="#eeddc8" opacity="0.72"/>
+
+  <!-- Large glowing eye -->
+  <circle cx="48" cy="44" r="14" fill="#ff8800" filter="url(#eg-glow)" opacity="0.88"/>
+  <circle cx="48" cy="44" r="10" fill="url(#eg)"/>
+  <ellipse cx="48" cy="44" rx="3" ry="5.5" fill="#110300"/>
+  <circle cx="44" cy="40" r="3" fill="white" opacity="0.90"/>
+
+  <!-- Horns swept back-left from skull -->
+  <path d="M 36,22 C 30,12 26,4 22,0"
+    fill="none" stroke="#7f1d1d" stroke-width="8" stroke-linecap="round"/>
+  <path d="M 36,22 C 30,12 26,4 22,0"
+    fill="none" stroke="#ef4444" stroke-width="2.8" stroke-linecap="round" opacity="0.40"/>
+  <path d="M 50,16 C 46,6 44,0 42,-4"
+    fill="none" stroke="#6b1a1a" stroke-width="6" stroke-linecap="round"/>
+  <path d="M 50,16 C 46,6 44,0 42,-4"
+    fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" opacity="0.30"/>
+
+  <!-- Crest spine between horns -->
+  <polygon points="42,20 38,6 48,19" fill="#f97316" opacity="0.82"/>
+
+  <!-- Scale arcs on skull -->
+  <path d="M 30,46 C 33,42 39,42 42,46" fill="none" stroke="#f87171" stroke-width="1.5" opacity="0.30"/>
+  <path d="M 42,40 C 45,36 51,36 54,40" fill="none" stroke="#f87171" stroke-width="1.5" opacity="0.30"/>
+
+  <!-- Nostril -->
+  <ellipse cx="90" cy="52" rx="2.8" ry="2" fill="#5c0f0f" opacity="0.88"/>
+
+  <!-- Whisker lines from snout -->
+  <path d="M 97,46 C 100,36 98,26 93,20"
+    fill="none" stroke="#ff9944" stroke-width="1.8" stroke-linecap="round" opacity="0.68"/>
+  <path d="M 98,58 C 102,66 100,74 94,78"
+    fill="none" stroke="#ff9944" stroke-width="1.5" stroke-linecap="round" opacity="0.58"/>
 </svg>

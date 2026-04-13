@@ -91,62 +91,106 @@ const DragonSVG = () => (
 
     {/* head — revealed last, faces RIGHT toward tail gap */}
     <g id="dg-head" opacity="0">
-      <ellipse cx="604" cy="52" rx="80" ry="40" fill="rgba(255,85,0,0.14)" filter="url(#dg-glow)"/>
 
-      {/* upper jaw */}
-      <path
-        d="M 552,53 C 556,42 566,32 584,26 C 602,20 624,22 638,32 C 648,40 651,52 644,60 C 634,52 616,48 596,47 C 578,47 562,50 556,56 Z"
-        fill="#ff4400"/>
-      <path
-        d="M 552,53 C 556,42 566,32 584,26 C 602,20 624,22 638,32 C 648,40 651,52 644,60"
-        fill="none" stroke="#ff7744" strokeWidth="1.8" opacity="0.55"/>
+      {/* ambient glow */}
+      <ellipse cx="604" cy="52" rx="96" ry="52"
+        fill="rgba(255,85,0,0.13)" filter="url(#dg-glow)"/>
 
-      {/* lower jaw */}
-      <path
-        d="M 552,56 C 556,68 566,77 584,81 C 600,85 620,82 632,73 C 640,67 641,59 635,57 C 624,65 606,68 588,67 C 570,66 558,62 552,58 Z"
-        fill="#bb2200"/>
+      {/* ── depth shadow (slightly larger, darker) ── */}
+      <path d="M 552,52 C 551,36 558,20 574,12 C 590,4 614,2 636,12 C 652,20 664,36 664,52 C 664,66 654,80 636,88 C 616,96 590,96 568,88 C 552,82 544,70 544,60 C 544,56 548,54 552,52 Z"
+        fill="#3d0808" opacity="0.55"/>
 
-      {/* upper teeth */}
-      <polygon points="578,48 573,38 582,48" fill="#ffedcc" opacity="0.92"/>
-      <polygon points="596,46 592,36 601,46" fill="#ffedcc" opacity="0.90"/>
-      <polygon points="614,46 611,37 620,47" fill="#ffedcc" opacity="0.86"/>
-      <polygon points="630,50 628,41 637,51" fill="#ffedcc" opacity="0.80"/>
+      {/* ── main skull (filled closed path, facing right) ── */}
+      <path d="M 550,52 C 549,38 556,24 570,16 C 582,8 600,6 618,10 C 634,14 648,24 656,38 C 660,44 662,48 662,52 C 662,56 660,62 656,68 C 646,80 628,90 606,94 C 582,96 560,88 550,76 C 546,68 546,60 550,52 Z"
+        fill="#991b1b"/>
 
-      {/* lower teeth */}
-      <polygon points="578,67 573,77 582,67" fill="#eeddbb" opacity="0.82"/>
-      <polygon points="596,67 592,77 601,67" fill="#eeddbb" opacity="0.80"/>
-      <polygon points="614,66 611,75 619,66" fill="#eeddbb" opacity="0.75"/>
+      {/* skull sheen — upper highlight */}
+      <path d="M 570,16 C 582,8 600,6 618,10 C 634,14 648,24 656,38 C 646,28 632,20 616,16 C 600,12 582,12 570,20 Z"
+        fill="#dc2626" opacity="0.42"/>
 
-      {/* eye */}
-      <ellipse cx="576" cy="40" rx="11" ry="12" fill="#ffee44" filter="url(#dg-eye-glow)"/>
-      <ellipse cx="577" cy="41" rx="5.5" ry="6.5" fill="#ff8800"/>
-      <ellipse cx="576" cy="40" rx="2.5" ry="3"   fill="#110400"/>
-      <circle  cx="574" cy="38" r="2.2"            fill="white" opacity="0.88"/>
+      {/* ── brow ridge (defines the eye socket) ── */}
+      <path d="M 562,28 C 574,18 590,14 608,16 C 624,18 638,26 648,40"
+        fill="none" stroke="#f87171" strokeWidth="4" strokeLinecap="round" opacity="0.52"/>
 
-      {/* horns */}
-      <polygon points="558,48 549,18 565,46" fill="#cc2400"/>
-      <polygon points="570,44 564,12 578,42" fill="#aa2000"/>
-      <polygon points="556,50 550,32 560,48" fill="#882000" opacity="0.65"/>
+      {/* ── upper jaw / snout ── */}
+      <path d="M 662,50 C 652,36 636,28 614,24 C 596,20 576,22 564,30 C 576,26 596,24 616,28 C 636,32 652,42 660,52 Z"
+        fill="#cc2626"/>
+      {/* snout ridge line */}
+      <path d="M 564,30 C 576,24 596,22 618,26 C 638,30 654,40 662,52"
+        fill="none" stroke="#f87171" strokeWidth="2" strokeLinecap="round" opacity="0.38"/>
 
-      {/* crest spines */}
-      <polygon points="568,38 563,24 572,37" fill="#cc2600" opacity="0.72"/>
-      <polygon points="582,32 579,18 587,31" fill="#cc2600" opacity="0.62"/>
-      <polygon points="598,27 596,14 604,26" fill="#cc2600" opacity="0.55"/>
+      {/* ── lower jaw ── */}
+      <path d="M 662,54 C 650,70 630,80 606,84 C 582,88 562,82 554,72 C 564,78 582,82 606,80 C 628,78 648,68 660,56 Z"
+        fill="#7f1d1d"/>
 
-      {/* whiskers */}
-      <path d="M 640,44 C 652,38 664,34 672,30 C 678,27 679,22 674,20"
-        fill="none" stroke="#ff9955" strokeWidth="2.2" strokeLinecap="round" opacity="0.68"/>
-      <path d="M 638,54 C 650,55 661,52 668,57 C 673,62 670,67 663,66"
-        fill="none" stroke="#ff9955" strokeWidth="1.8" strokeLinecap="round" opacity="0.58"/>
-      <path d="M 640,40 C 653,32 666,24 672,18 C 676,13 672,9 666,11"
-        fill="none" stroke="#ff9955" strokeWidth="1.5" strokeLinecap="round" opacity="0.48"/>
+      {/* ── upper teeth ── */}
+      <polygon points="596,24 592,10 603,24"  fill="#ffedd8" opacity="0.92"/>
+      <polygon points="614,22 610,8  621,22"  fill="#ffedd8" opacity="0.88"/>
+      <polygon points="632,28 628,14 639,28"  fill="#ffedd8" opacity="0.84"/>
+      <polygon points="648,40 644,26 655,40"  fill="#ffedd8" opacity="0.78"/>
 
-      {/* nostril */}
-      <ellipse cx="641" cy="40" rx="3.2" ry="2.2" fill="#771800" opacity="0.85"/>
+      {/* ── lower teeth ── */}
+      <polygon points="596,82 592,96 603,82"  fill="#eeddbb" opacity="0.80"/>
+      <polygon points="614,84 610,98 621,84"  fill="#eeddbb" opacity="0.76"/>
+      <polygon points="630,80 626,94 637,80"  fill="#eeddbb" opacity="0.70"/>
 
-      {/* fire breath */}
-      <path d="M 646,48 C 662,40 680,36 696,40 C 685,44 668,46 666,54 C 678,46 694,44 706,50 C 695,56 680,58 678,64"
-        fill="none" stroke="url(#dg-fire)" strokeWidth="6" strokeLinecap="round" opacity="0.5"/>
+      {/* ── eye — large amber, slit pupil ── */}
+      <circle cx="586" cy="40" r="18" fill="#ff8c00" filter="url(#dg-eye-glow)" opacity="0.9"/>
+      <circle cx="586" cy="40" r="12" fill="#ff6020"/>
+      <ellipse cx="586" cy="40" rx="3.5" ry="7" fill="#110400"/>
+      <circle  cx="582" cy="36" r="3.2"          fill="white" opacity="0.88"/>
+      <circle  cx="586" cy="40" r="12"           fill="none" stroke="#ff4400" strokeWidth="1.5" opacity="0.3"/>
+
+      {/* ── scale marks on skull ── */}
+      <path d="M 575,24 C 580,18 588,18 593,24" fill="none" stroke="#f87171" strokeWidth="1.6" opacity="0.30"/>
+      <path d="M 593,20 C 598,14 606,14 611,20" fill="none" stroke="#f87171" strokeWidth="1.6" opacity="0.30"/>
+      <path d="M 612,18 C 617,12 625,12 630,18" fill="none" stroke="#f87171" strokeWidth="1.6" opacity="0.30"/>
+      <path d="M 563,38 C 567,32 573,32 577,38" fill="none" stroke="#f87171" strokeWidth="1.3" opacity="0.22"/>
+
+      {/* ── horns — curved strokes swept back-left from skull ── */}
+      {/* primary horn */}
+      <path d="M 596,12 C 584,0 574,-10 562,-14"
+        fill="none" stroke="#7f1d1d" strokeWidth="13" strokeLinecap="round"/>
+      <path d="M 596,12 C 584,0 574,-10 562,-14"
+        fill="none" stroke="#ef4444" strokeWidth="4" strokeLinecap="round" opacity="0.36"/>
+      {/* secondary horn */}
+      <path d="M 614,10 C 604,-2 596,-12 590,-18"
+        fill="none" stroke="#6b1a1a" strokeWidth="9" strokeLinecap="round"/>
+      <path d="M 614,10 C 604,-2 596,-12 590,-18"
+        fill="none" stroke="#ef4444" strokeWidth="2.5" strokeLinecap="round" opacity="0.26"/>
+      {/* small crest horn */}
+      <path d="M 632,14 C 626,4 622,-4 620,-8"
+        fill="none" stroke="#991b1b" strokeWidth="6" strokeLinecap="round"/>
+
+      {/* ── crest spines on top of skull ── */}
+      <polygon points="604,14 598,0  611,13"  fill="#f97316" opacity="0.82"/>
+      <polygon points="620,12 615,-2 626,11"  fill="#f97316" opacity="0.72"/>
+      <polygon points="638,18 634,4  645,18"  fill="#f97316" opacity="0.64"/>
+
+      {/* ── whiskers from snout going RIGHT ── */}
+      <path d="M 662,46 C 675,36 688,28 700,22 C 708,17 712,13 706,9"
+        fill="none" stroke="#ff9955" strokeWidth="2.6" strokeLinecap="round"
+        className="dragon-whisker dw1" opacity="0.72"/>
+      <path d="M 662,52 C 676,54 690,50 702,54 C 710,57 713,64 706,68"
+        fill="none" stroke="#ff9955" strokeWidth="2.0" strokeLinecap="round"
+        className="dragon-whisker dw2" opacity="0.60"/>
+      <path d="M 662,42 C 675,32 690,24 702,18 C 710,13 712,8 706,4"
+        fill="none" stroke="#ff9955" strokeWidth="1.5" strokeLinecap="round"
+        className="dragon-whisker dw3" opacity="0.48"/>
+
+      {/* ── beard tendril below snout ── */}
+      <path d="M 654,70 C 662,80 664,90 658,96 C 654,101 644,100 640,94"
+        fill="none" stroke="#cc4422" strokeWidth="2.4" strokeLinecap="round" opacity="0.54"/>
+
+      {/* ── nostril ── */}
+      <ellipse cx="654" cy="48" rx="5" ry="3.5" fill="#5c0f0f" opacity="0.86"/>
+
+      {/* ── ember particles near mouth ── */}
+      <circle className="dragon-ember" cx="676" cy="40" r="3.8" fill="#ff8c00"/>
+      <circle className="dragon-ember" cx="690" cy="30" r="2.6" fill="#fbbf24"/>
+      <circle className="dragon-ember" cx="684" cy="54" r="3.2" fill="#f97316"/>
+      <circle className="dragon-ember" cx="698" cy="62" r="2.2" fill="#ff8c00"/>
+      <circle className="dragon-ember" cx="680" cy="22" r="2.0" fill="#fbbf24"/>
     </g>
   </svg>
 );

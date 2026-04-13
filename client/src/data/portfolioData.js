@@ -1,10 +1,13 @@
 import carboncoin from '../assets/Carbon_Coin.png';
 import duedash from '../assets/DueDash.png';
 import codecampus from '../assets/CodeCampus.png';
+import profilePhoto from '../assets/profile.jpeg';
 
 
 
 const portfolioData = {
+  photo: profilePhoto,
+
   name: 'Arpan Goyal',
   title: 'Full Stack Developer',
   roles: [
@@ -74,14 +77,16 @@ const portfolioData = {
     },
   ],
 
-  education: [
-    {
+  experience: [{
       type: 'work',
       title: 'Internship',
       institution: 'Globe Asia Trasport Pvt. Ltd.',
       period: 'May 2025 – July 2025',
       description: 'Worked on developing a MERN stack application for centralised management of transportation logistics, improving efficiency by 30%.',
     },
+  ],
+  
+  education: [
     {
       type: 'education',
       title: 'B.Tech in Computer Science & Engineering',
@@ -97,8 +102,6 @@ const portfolioData = {
       description: 'Science stream with Maths.',
     },
   ],
-
-  experience: [],
 
   hobbies: {
     photography: [
@@ -181,19 +184,13 @@ const portfolioData = {
     {
       title: 'Programming for Everybody by University of Michigan',
       platform: 'Coursera',
-      link: '#',
+      pdfSrc: '/certs/PFE.pdf',
       year: '2023',
     },
     {
       title: 'Programming in C',
       platform: 'Infosys Springboard',
-      link: '#',
-      year: '2024',
-    },
-    {
-      title: 'Foundations: Data, Data, Everywhere by Google',
-      platform: 'Coursera',
-      link: '#',
+      pdfSrc: '/certs/PIC.pdf',
       year: '2024',
     },
   ],

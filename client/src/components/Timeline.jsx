@@ -8,8 +8,8 @@ import portfolioData from '../data/portfolioData';
 gsap.registerPlugin(ScrollTrigger);
 
 const allItems = [
-  ...portfolioData.education.map(e => ({ ...e, type: 'education' })),
   ...portfolioData.experience.map(e => ({ ...e, type: 'experience' })),
+  ...portfolioData.education.map(e => ({ ...e, type: 'education' })),
 ];
 
 function TimelineItem({ item, index }) {
