@@ -420,6 +420,62 @@ img {
   justify-content: center;
 }
 
+/* ── CV download dropdown ── */
+.cv-drop-wrap {
+  position: relative;
+}
+
+.cv-drop-trigger {
+  gap: 8px;
+}
+
+.cv-chevron {
+  font-size: 0.9rem;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+.cv-chevron.open {
+  transform: rotate(180deg);
+}
+
+.cv-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 100%;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  z-index: 100;
+  animation: dropIn 0.15s ease;
+}
+@keyframes dropIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.cv-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition);
+  white-space: nowrap;
+}
+.cv-dropdown-item:hover {
+  background: var(--bg-alt);
+  color: var(--accent);
+}
+.cv-dropdown-item + .cv-dropdown-item {
+  border-top: 1px solid var(--border);
+}
+
 /* ── Scroll hint ── */
 .hero-scroll-hint {
   position: absolute;

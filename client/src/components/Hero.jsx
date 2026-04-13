@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
-import { FiDownload, FiArrowRight } from 'react-icons/fi';
+import { FiDownload, FiArrowRight, FiChevronDown, FiFileText } from 'react-icons/fi';
 import DragonSVG from './DragonSVG';
 import portfolioData from '../data/portfolioData';
 import { getDownloadUrl } from '../utils/api';
@@ -11,11 +11,25 @@ export default function Hero() {
   const [charIndex, setCharIndex]     = useState(0);
   const [isDeleting, setIsDeleting]   = useState(false);
 
+  const [cvOpen, setCvOpen] = useState(false);
+
   const eyebrowRef = useRef(null);
   const nameRef    = useRef(null);
   const typeRef    = useRef(null);
   const btnsRef    = useRef(null);
   const pauseRef   = useRef(false);
+  const cvDropRef  = useRef(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handler = (e) => {
+      if (cvDropRef.current && !cvDropRef.current.contains(e.target)) {
+        setCvOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
 
   // ── Dragon ring draw-in + staggered text reveal ──────────────
   useEffect(() => {
@@ -122,9 +136,44 @@ export default function Hero() {
           <span className="typewriter-cursor" aria-hidden="true">|</span>
         </div>
         <div ref={btnsRef} className="hero-btns">
-          <a href={getDownloadUrl('pdf')} target="_blank" rel="noreferrer" className="btn btn-primary">
-            <FiDownload /> Download CV
-          </a>
+
+          {/* ── CV download dropdown ─────────────────────── */}
+          <div className="cv-drop-wrap" ref={cvDropRef}>
+            <button
+              className="btn btn-primary cv-drop-trigger"
+              onClick={() => setCvOpen(o => !o)}
+              aria-haspopup="true"
+              aria-expanded={cvOpen}
+            >
+              <FiDownload /> Download CV <FiChevronDown className={`cv-chevron${cvOpen ? ' open' : ''}`} />
+            </button>
+
+            {cvOpen && (
+              <div className="cv-dropdown" role="menu">
+                <a
+                  href={getDownloadUrl('pdf')}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cv-dropdown-item"
+                  role="menuitem"
+                  onClick={() => setCvOpen(false)}
+                >
+                  <FiDownload /> PDF
+                </a>
+                <a
+                  href={getDownloadUrl('docx')}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cv-dropdown-item"
+                  role="menuitem"
+                  onClick={() => setCvOpen(false)}
+                >
+                  <FiFileText /> Word (.docx)
+                </a>
+              </div>
+            )}
+          </div>
+
           <button className="btn btn-outline" onClick={scrollToContact}>
             Get In Touch <FiArrowRight />
           </button>
