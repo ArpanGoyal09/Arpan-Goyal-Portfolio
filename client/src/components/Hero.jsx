@@ -3,7 +3,9 @@ import { gsap } from 'gsap';
 import { FiDownload, FiArrowRight, FiChevronDown, FiFileText } from 'react-icons/fi';
 import DragonSVG from './DragonSVG';
 import portfolioData from '../data/portfolioData';
-import { getDownloadUrl } from '../utils/api';
+
+const CV_PDF  = '/downloads/Arpan_Goyal_Resume.pdf';
+const CV_DOCX = '/downloads/Arpan_Goyal_Resume.docx';
 
 export default function Hero() {
   const [displayText, setDisplayText] = useState('');
@@ -151,9 +153,8 @@ export default function Hero() {
             {cvOpen && (
               <div className="cv-dropdown" role="menu">
                 <a
-                  href={getDownloadUrl('pdf')}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={CV_PDF}
+                  download="Arpan_Goyal_Resume.pdf"
                   className="cv-dropdown-item"
                   role="menuitem"
                   onClick={() => setCvOpen(false)}
@@ -161,9 +162,8 @@ export default function Hero() {
                   <FiDownload /> PDF
                 </a>
                 <a
-                  href={getDownloadUrl('docx')}
-                  target="_blank"
-                  rel="noreferrer"
+                  href={CV_DOCX}
+                  download="Arpan_Goyal_Resume.docx"
                   className="cv-dropdown-item"
                   role="menuitem"
                   onClick={() => setCvOpen(false)}
